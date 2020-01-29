@@ -22,14 +22,14 @@ public class TestCarInsuranceWizard extends WebDriverTest {
 
     private static Stream<Arguments> createCarManufacturersAndModels(){
         return Stream.of(
-//                Arguments.of("VW", "Passat"),
-//                Arguments.of("VW", "Caddy"),
-//                Arguments.of("VW", "Transporter"),
-//                Arguments.of("TOYOTA", "Camry"),
-//                Arguments.of("TOYOTA", "Carina"),
-//                Arguments.of("TOYOTA", "Avensis"),
-//                Arguments.of("FORD", "Escort"),
-//                Arguments.of("FORD", "Focus"),
+                Arguments.of("VW", "Passat"),
+                Arguments.of("VW", "Caddy"),
+                Arguments.of("VW", "Transporter"),
+                Arguments.of("TOYOTA", "Camry"),
+                Arguments.of("TOYOTA", "Carina"),
+                Arguments.of("TOYOTA", "Avensis"),
+                Arguments.of("FORD", "Escort"),
+                Arguments.of("FORD", "Focus"),
                 Arguments.of("FORD", "Mondeo")
         );
     }
