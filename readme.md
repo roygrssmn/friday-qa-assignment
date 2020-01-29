@@ -7,7 +7,7 @@
 
 ###Running tests
 
-* Run the tests with `mvn test -Denv.browser=firefox` or `mvn test -Denv.browser=chrome`
+* To run the tests set environment variable `browser` to `chrome` or `firefox` or with `mvn test -Denv.browser=firefox` or `mvn test -Denv.browser=chrome`
 * Default browser is Chrome, to run on Firefox set environment variable `mvn -Denv.browser=firefox test`
 * To run tests on docker setup selenium grid and environment `mvn -Denv.browser=firefox_docker test` or `mvn -Denv.browser=chrome_docker test`
 
