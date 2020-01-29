@@ -46,6 +46,8 @@ public class WebDriverGetter {
                 options.addArguments("--start-maximized");
                 options.addArguments("--ignore-certificate-errors");
                 options.addArguments("--headless");
+                options.addArguments("--no-sandbox");
+                options.addArguments("--disable-dev-shm-usage");
                 DesiredCapabilities capabilities = DesiredCapabilities.chrome();
                 capabilities.setCapability(ChromeOptions.CAPABILITY, options);
                 WebDriver driver =  new RemoteWebDriver(new URL("http://localhost:" + getDockerPort() + "/wd/hub"), capabilities);

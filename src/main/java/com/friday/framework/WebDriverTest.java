@@ -21,7 +21,7 @@ public abstract class WebDriverTest {
     public static String getBrowser() {
         final String browser = System.getenv("BROWSER");
         if (isNullOrEmpty(browser))
-            return "CHROME";
+            return "Chrome_docker";
         return browser;
     }
 
