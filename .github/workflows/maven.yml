@@ -1,12 +1,10 @@
-name: Java CI
+name: Test on Browsers
 
 on: [push]
 
 jobs:
-  build:
-
+  test chrome:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v1
@@ -36,3 +34,35 @@ jobs:
         docker rm -vf chromenode
         docker rm -vf seleniumhub
         docker network rm network1
+
+  test firefox:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-jdk11-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-jdk11-
+      - name: Set up JDK 1.11
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+      - name: Create network
+        run: docker network create network1
+      - name: Create selenium hub
+        run: docker run -d -p 4444:4444 --name seleniumhub --network network1 -e GRID_TIMEOUT=60 -e GRID_BROWSER_TIMEOUT=60 selenium/hub:3.141.59-zinc
+      - name: Create selenium node
+        run: docker run -d --name firefoxnode --net network1 -e HUB_HOST=seleniumhub -v /dev/shm:/dev/shm selenium/node-firefox:3.141.59-zinc
+      - name: Maven clean
+        run: mvn --file pom.xml clean
+      - name: Run tests
+        run: mvn test
+        env:
+          BROWSER: firefox_docker
+      - name: Destroy selenium grid
+        run: |
+          docker rm -vf firefoxnode
+          docker rm -vf seleniumhub
+          docker network rm network1
