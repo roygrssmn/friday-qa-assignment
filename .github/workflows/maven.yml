@@ -3,7 +3,7 @@ name: Test on Browsers
 on: [push]
 
 jobs:
-  test chrome:
+  test_chrome:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -35,7 +35,7 @@ jobs:
         docker rm -vf seleniumhub
         docker network rm network1
 
-  test firefox:
+  test_firefox:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
