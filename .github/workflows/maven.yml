@@ -29,6 +29,8 @@ jobs:
       run: mvn --file pom.xml clean
     - name: Run tests
       run: mvn test
+      env:
+        BROWSER: chrome_docker
     - name: Destroy selenium grid
       run: |
         docker rm -vf chromenode
