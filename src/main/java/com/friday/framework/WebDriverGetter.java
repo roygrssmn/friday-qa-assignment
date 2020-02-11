@@ -8,6 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -31,11 +33,13 @@ public class WebDriverGetter {
                 options.addArguments("--start-maximized");
                 options.addArguments("--disable-web-security");
                 options.addArguments("--ignore-certificate-errors");
+                WebDriverManager.chromedriver().setup();
                 WebDriver driver = new ChromeDriver(options);
                 driver.manage().window().maximize();
                 return driver;
             }
             case FIREFOX: {
+                WebDriverManager.firefoxdriver().setup();
                 WebDriver driver =  new FirefoxDriver();
                 driver.manage().window().maximize();
                 return driver;
